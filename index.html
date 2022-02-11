@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pacman</title>
+  <meta name="description" content="Jeu de Pacman en ligne">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://jose.bruxelles.dev/assets/images/icons/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://css.bruxelles.dev">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://css.bruxelles.dev/jdb?v=1.1.0&c=all">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="jdb-black">
+  <header class="jdb-container">
+    <div class="max jdb-margin-top">
+      <h1 class="jdb-center jdb-text-shadow-multiple-dark">
+        Pacman
+      </h1>
+    </div>
+  </header>
+  <main class="jdb-container">
+    <div class="max jdb-padding-top">
+      <div class="jdb-border jdb-border-w2 jdb-round-xl jdb-padding-sm jdb-margin-auto jdb-unselectable" id="pacman-container">
+        <div class="jdb-border jdb-border-w2 jdb-round-xl jdb-center jdb-padding">
+          <div class="jdb-padding-8 jdb-uppercase jdb-bold jdb-md">High score</div>
+          <div class="jdb-padding-4 jdb-lg" id="high-score">0</div>
+          <div class="jdb-padding-left jdb-padding-right jdb-lg" id="current-score">
+            Score : <span class="jdb-right">0</span>
+          </div>
+        </div>
+        <div class="jdb-responsive">
+          <div class="jdb-margin-8 jdb-margin-auto" id="maze-area"></div>
+        </div>
+        <div class="jdb-border jdb-border-w2 jdb-round-xl">
+          <div class="jdb-padding-sm jdb-uppercase" id="lives-area"></div>
+        </div>
+      </div>
+      <div class="jdb-center jdb-margin-top jdb-xl jdb-focusable-buttons" id="pacman-controls-btn">
+        <button class="jdb-button jdb-round jdb-hover-blue-2" id="go-up">
+          <i class="fa fa-fw fa-angle-up" aria-hidden="true"></i> Haut
+          <i class="fa fa-fw fa-angle-up" aria-hidden="true"></i>
+        </button>
+        <div class="jdb-section">
+          <button class="jdb-button jdb-round jdb-hover-blue-2" id="go-left">
+            <i class="fa fa-angle-left" aria-hidden="true"></i> Gauche
+          </button>
+          <button class="jdb-button jdb-round jdb-hover-blue-2" id="go-right">
+            Droite <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button class="jdb-button jdb-round jdb-hover-blue-2" id="go-down">
+          <i class="fa fa-fw fa-angle-down" aria-hidden="true"></i> Bas
+          <i class="fa fa-fw fa-angle-down" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+  <footer class="jdb-container jdb-margin-top">
+    <div class="max">
+      <hr class="jdb-margin-auto" style="width:50%">
+      <div class="jdb-xl jdb-center">Raccourcis clavier</div>
+      <div class="jdb-panel jdb-margin-auto" style="max-width:450px">
+        <ul class="jdb-ul jdb-border jdb-border-w2 jdb-round-lg">
+          <li><kdb>p</kdb> : Mettre en pause le jeu.</li>
+          <li><kdb>r</kdb> : Actualiser la page.</li>
+        </ul>
+      </div>
+      <hr class="jdb-margin-auto" style="width:50%">
+      <p class="jdb-center">Un projet de <a href="/">José dBruxelles</a></p>
+      <hr class="jdb-margin-auto" style="width:50%">
+      <div class="jdb-section" rel="license">
+        <p>&copy; Ce site est mis à disposition selon les termes de la <a href="//creativecommons.org/licenses/by/4.0/legalcode.fr" target="_blank" rel="license">Licence Creative Commons Attribution - Conditions 4.0 International</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://jose.bruxelles.dev/jquery.js?v=3.6.0"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/maze.js"></script>
+  <script src="js/model/Component.js"></script>
+  <script src="js/model/Sprite.js"></script>
+  <script src="js/model/Tile.js"></script>
+  <script src="js/model/Dot.js"></script>
+  <script src="js/model/Wall.js"></script>
+  <script src="js/model/Position.js"></script>
+  <script src="js/model/Layer.js"></script>
+  <script src="js/model/Maze.js"></script>
+  <script src="js/model/Game.js"></script>
+  <script src="js/model/Direction.js"></script>
+  <script src="js/model/Pacman.js"></script>
+  <script src="js/model/Ghost.js"></script>
+  <script src="js/view/GameView.js"></script>
+  <script src="js/view/PacmanView.js"></script>
+  <script src="js/controller/GameCtrl.js"></script>
+  <script src="js/controller/PacmanCtrl.js"></script>
+  <script src="js/initGame.js"></script>
+</body>
+</html>

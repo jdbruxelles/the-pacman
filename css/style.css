@@ -1,0 +1,138 @@
+:root {
+  --blue: #0000ff;
+  --light-yellow: #ffffa0;
+  --yellow: #ffff00;
+  --brown: #743900;
+  --black: #000000;
+  --default-font-family: 'Pangolin', Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--default-font-family);
+  font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--default-font-family) !important;
+}
+
+footer a {
+  color: #d3e8ff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #e3e8ee;
+}
+
+.max {
+  max-width: 900px;
+  margin: auto;
+}
+
+.jdb-border {
+  border-color: var(--blue) !important;
+}
+.jdb-blue-2, .jdb-hover-blue-2:hover {
+  background-color: var(--blue) !important;
+  color: #ffffff !important;
+}
+.jdb-hover-blue-o:hover {
+  background-color: rgb(0 0 255 / 50%) !important;
+}
+
+#pacman-container {
+  font-family: 'Press Start 2P', var(--default-font-family);
+  background-color: var(--black);
+  max-width: 450px
+}
+
+#current-score {
+  text-align: left;
+}
+
+#maze-area {
+  position: relative;
+  /* width:420px; */
+  /* height:465px; */
+}
+#maze-area span {
+  position: absolute;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+#lives-area {
+  min-height: 32px;
+}
+#lives-area span {
+  display: inline-block;
+  background-color: var(--yellow);
+  border-radius: 50%;
+  margin: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.mz-empty {
+  background-color: var(--black);
+}
+.mz-wall {
+  border: 6px solid var(--blue);
+}
+.mz-pac-dot {
+  background-color: var(--black);
+}
+.mz-pac-dot::before {
+  background-color: var(--light-yellow);
+}
+.mz-pac-dot.energizer::before {
+  background-color: var(--brown);
+}
+.mz-pac-dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
+.mz-pacman {
+  background-image: url(../images/the-pacman.gif);
+  border-radius: 50%;
+  z-index: 1;
+}
+.mz-pacman.not-started {
+  background-color: var(--yellow);
+}
+.mz-pacman[data-dir='to-top']    { transform: rotate(270deg); }
+.mz-pacman[data-dir='to-right']  { transform: rotate(0deg); }
+.mz-pacman[data-dir='to-bottom'] { transform: rotate(90deg); }
+.mz-pacman[data-dir='to-left']   { transform: rotate(180deg); }
+.mz-pacman, .ghost {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.ghost {
+  z-index: 1;
+}
+.ghost.blinky { background-image: url(../images/blinky.gif); }
+.ghost.pinky  { background-image: url(../images/pinky.gif); }
+.ghost.inky   { background-image: url(../images/inky.gif); }
+.ghost.clyde  { background-image: url(../images/clyde.gif); }
+
+#start {
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  footer .jdb-row > .jdb-col.s6 {
+    text-align: left;
+    width: 100%;
+  }
+}
