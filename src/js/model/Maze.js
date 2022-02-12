@@ -108,38 +108,18 @@ class Maze {
     throw new Error("There is no dot at the given position.");
   }
 
-  /**
-   * @returns {boolean} true if all the dots have been eaten.
-   */
-  isEmpty() {
-    return this._nbDots === 0;
-  }
+  /** @returns {boolean} true if all the dots have been eaten. */
+  isEmpty() { return this._nbDots === 0; }
 
-  /**
-   * @returns {number} the number of lines of the maze.
-   */
-  get nbRows() {
-    return this._nbRows;
-  }
+  /** @returns {number} the number of lines of the maze. */
+  get nbRows() { return this._nbRows; }
 
-  /**
-   * @returns {number} the number of columns of the maze.
-   */
-  get nbColumns() {
-    return this._nbColumns;
-  }
+  /** @returns {number} the number of columns of the maze. */
+  get nbColumns() { return this._nbColumns; }
 
-  /**
-   * @returns {Position} the initial position of the Pacman.
-   */
-  get pacmanRespawn() {
-    return this._pacmanRespawn;
-  }
+  /** @returns {Position} the initial position of the Pacman. */
+  get pacmanRespawn() { return this._pacmanRespawn; }
 
-  /**
-   * @returns {Position} the initial position of the ghosts.
-   */
-  get ghostRespawn() {
-    return this._ghostRespawn;
-  }
+  /** @returns {Position} the initial position of the ghosts. */
+  get ghostRespawn() { return this._ghostRespawn; }
 }

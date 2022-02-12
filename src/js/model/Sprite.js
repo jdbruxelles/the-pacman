@@ -21,47 +21,23 @@ class Sprite extends Component {
     this._isDead = false;
   }
 
-  /**
-   * @returns {Position} the position of the sprite.
-   */
-  get position() {
-    return this._position;
-  }
+  /** @returns {Position} the position of the sprite. */
+  get position() { return this._position; }
 
-  /**
-   * @returns {Direction} the direction in which the sprite moves.
-   */
-  get direction() {
-    return this._direction;
-  }
+  /** @returns {Direction} the direction in which the sprite moves. */
+  get direction() { return this._direction; }
 
-  /**
-   * @returns {boolean} true if a request for a change of direction has been made.
-   */
-  get askedToChangeDirection() {
-    return this._askedToChangeDirection;
-  }
+  /** @returns {boolean} true if a request for a change of direction has been made. */
+  get askedToChangeDirection() { return this._askedToChangeDirection; }
 
-  /**
-   * @returns {Direction} the asked direction.
-   */
-  get askedDirection() {
-    return this._askedDirection;
-  }
+  /** @returns {Direction} the asked direction. */
+  get askedDirection() { return this._askedDirection; }
 
-  /**
-   * @returns {Direction} the previous position of the sprite.
-   */
-  get previousPosition() {
-    return this._previousPosition;
-  }
+  /** @returns {Direction} the previous position of the sprite. */
+  get previousPosition() { return this._previousPosition; }
 
-  /**
-   * @returns {boolean} the dead state of the sprite.
-   */
-  get isDead() {
-    return this._isDead;
-  }
+  /** @returns {boolean} the dead state of the sprite. */
+  get isDead() { return this._isDead; }
 
   /**
    * Moves the sprite in its direction.

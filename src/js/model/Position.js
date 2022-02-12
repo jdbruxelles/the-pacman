@@ -13,14 +13,10 @@ class Position {
     this._column = column;
   }
 
-  /**
-   * @returns {number} the row position
-   */
+  /** @returns {number} the row position */
   get row() { return this._row; }
 
-  /**
-   * @returns {number} the column position
-   */
+  /** @returns {number} the column position */
   get column() { return this._column; }
 
   /**

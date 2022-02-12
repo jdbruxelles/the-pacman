@@ -1,12 +1,13 @@
 "use strict";
 
-/* legend
- 0 = empty
- 1 = wall
- 2 = pac-dot
- 3 = energizer
- 4 = pacman respawn
- 5 = ghost respawn
+/**
+ * Legend:
+ *  0 = empty,
+ *  1 = wall,
+ *  2 = pac-dot,
+ *  3 = energizer,
+ *  4 = pacman respawn,
+ *  5 = ghost respawn.
  */
 const RAW_MAZE = {
   table: [

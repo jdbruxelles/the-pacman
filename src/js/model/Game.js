@@ -17,6 +17,7 @@ class Game {
     this._highScore = localStorage.getItem("highScore") || 0;
     this._removedDot;
     this._isPaused = false;
+    this._hasStarted = false;
   }
 
   /** @returns {Maze} the new maze object. */
@@ -39,6 +40,15 @@ class Game {
 
   /** @returns {boolean} the pause state of the game. */
   get isPaused() { return this._isPaused; }
+
+  /** @returns {boolean} true if the game has started, and else otherwise. */
+  get hasStarted() { return this._hasStarted; }
+
+  /** Marks that the game has started. */
+  markStart() { this._hasStarted = true; }
+
+  /** Marks that the game has ended. */
+  markEnd() { this._hasStarted = false; }
 
   /** Marks the game as paused. */
   markPause() { this._isPaused = true; }
@@ -141,8 +151,7 @@ class Game {
   }
 
   /**
-   * @returns {boolean} true if pacman has been eaten (dead),
-   * and else otherwise.
+   * @returns {boolean} true if pacman has been eaten (dead), and else otherwise.
    */
   pacmanHasBeenEaten() {
     return this.pacman.isDead;

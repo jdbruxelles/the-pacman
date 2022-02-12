@@ -19,19 +19,11 @@ class Direction {
     this._deltaColumn = deltaColumn;
   }
 
-  /**
-   * @returns {number} the delta value on the horizontal axis.
-   */
-  get deltaRow() {
-    return this._deltaRow;
-  }
+  /** @returns {number} the delta value on the horizontal axis. */
+  get deltaRow() { return this._deltaRow; }
 
-  /**
-   * @returns {number} the delta value on the vertical axis.
-   */
-  get deltaColumn() {
-    return this._deltaColumn;
-  }
+  /** @returns {number} the delta value on the vertical axis. */
+  get deltaColumn() { return this._deltaColumn; }
 }
 
 Direction.NORTH = new Direction(-1, 0);

@@ -16,7 +16,7 @@ class GameView {
     this._updateMazeArea();
     this._createMaze();
     this.updateLives();
-    this.displayGameOver();
+    this.showHighScore();
 
     $("#pacman-container").append(
       $("<button>", {
@@ -28,20 +28,32 @@ class GameView {
       }).one("click", (event) => {
         this.startGame();
         $(event.target).click(() => {
-          this._togglePause();
+          if (!this._game.isGameOver()) {
+            this._togglePause();
+          }
         }).html(
           $("<span>",{
             "aria-hidden": true,
             class: "fa jdb-margin-right fa-pause",
             style: "top:-3px; position:relative"
-          })).append($("<span>").text(" Pause")
-        );
+          })
+        ).append($("<span>").text("Pause"));
+        $(".mz-pacman").removeClass("not-started");
       })
     );
 
     $(window).on("keydown", (event) => {
       switch (event.key.toLowerCase()) {
-        case "p": this._togglePause(); break;
+        case "p":
+          if (this._game.hasStarted) {
+            this._togglePause();
+          }
+          break;
+        case "s":
+          if (!this._game.hasStarted) {
+            $("#start").click();
+          }
+          break;
         case "r": window.location.reload(); break;
       }
     });
@@ -51,24 +63,21 @@ class GameView {
    * Toggle pause state and the pause button.
    */
   _togglePause() {
-    let $startButton = $("#pacman-container")
-      .find("#start").find("span");
+    let $startButton = $("#pacman-container").find("#start");
     if (this._game.isPaused) {
       this._game.markPlay();
       this._gameCtrl.play();
 
       $(".mz-pacman").removeClass("not-started");
-      $startButton.last().text("Pause");
-      $startButton.first()
-        .removeClass("fa-play").addClass("fa-pause");
+      $startButton.find("span:first-child").removeClass("fa-play").addClass("fa-pause");
+      $startButton.find("span:last-child").text("Pause");
     } else {
       this._game.markPause();
       this._gameCtrl.pause();
 
       $(".mz-pacman").addClass("not-started");
-      $startButton.last().text("Play");
-      $startButton.first()
-        .removeClass("fa-pause").addClass("fa-play");
+      $startButton.find("span:first-child").removeClass("fa-pause").addClass("fa-play");
+      $startButton.find("span:last-child").text("Play");
     }
   }
 
@@ -97,7 +106,7 @@ class GameView {
      * @param {number} properties.left the absolute let position.
      * @returns {object} the jQuery object element.
      */
-    const newTile = (properties) => $("<span>", {
+    const $newTile = (properties) => $("<span>", {
       class: properties.class,
       id: properties.id
     }).css({ top, left } = properties);
@@ -111,11 +120,11 @@ class GameView {
         left = `${TILE_SIZE * j}px`;
 
         if (this._game.maze.getWallLayerTile(new Position(i, j))) {
-          $mazeArea.append(newTile({ class: "mz-wall", top, left }));
+          $mazeArea.append($newTile({ class: "mz-wall", top, left }));
         } else if (this._game.maze.getDotLayerTile(new Position(i, j))) {
           if (this._game.maze.getDotLayerTile(new Position(i, j)).isEnergizer) {
             $mazeArea.append(
-              newTile({
+              $newTile({
                 class: "mz-pac-dot energizer",
                 id: `d_${id}`,
                 top, left
@@ -123,7 +132,7 @@ class GameView {
             );
           } else {
             $mazeArea.append(
-              newTile({
+              $newTile({
                 class: "mz-pac-dot",
                 id: `d_${id}`,
                 top, left
@@ -136,7 +145,7 @@ class GameView {
 
     // Add the pacman to the UI.
     $mazeArea.append(
-      newTile({
+      $newTile({
         class: "mz-pacman not-started",
         top: `${TILE_SIZE * this._game.maze.pacmanRespawn.row}px`,
         left: `${TILE_SIZE * this._game.maze.pacmanRespawn.column}px`
@@ -146,7 +155,7 @@ class GameView {
     // Add ghosts to the UI.
     GHOSTS_ID.forEach((ghostClass) => {
       $mazeArea.append(
-        newTile({
+        $newTile({
           class: `ghost ${ghostClass}`,
           top: `${TILE_SIZE * this._game.maze.ghostRespawn.row}px`,
           left: `${TILE_SIZE * this._game.maze.ghostRespawn.column}px`
@@ -182,11 +191,10 @@ class GameView {
 
     if (this._game.removedDot) {
       $(`#${this._game.removedDot.id}`).remove();
-      $(`#current-score`).find("span").text(this._game.score);
+      $("#current-score").find("span").text(this._game.score);
       if (this._game.removedDot.isEnergizer && this._game.pacman.isSuper) {
-        $(`#current-score`).find("span")
-          .addClass("jdb-text-green")
-          .delay(1e3).queue(function(){
+        $("#current-score").find("span")
+          .addClass("jdb-text-green").delay(1e3).queue(function(){
             $(this).removeClass("jdb-text-green").dequeue();
           });
       }
@@ -205,9 +213,25 @@ class GameView {
   }
 
   /**
+   * Displays the given message on the
+   * info panel at the end of the game.
+   * @param {string} message the message to display.
+   */
+  displayEndOfGameMsg(message) {
+    $("#info-panel").html(message).slideDown();
+  }
+
+  /**
+   * Hides the info panel.
+   */
+  hideEndOfGameMsg() {
+    $("#info-panel").html("").slideUp();
+  }
+
+  /**
    * Displays the current high score in the UI.
    */
-  displayGameOver() {
+  showHighScore() {
     $("#high-score").text(this._game.highScore);
   }
 
@@ -219,7 +243,14 @@ class GameView {
   }
 
   /**
-   * Updates the game in the UI for the next level.
+   * Marks the Pacman as eating.
+   */
+  enablePacman() {
+    $(".mz-pacman").removeClass("not-started");
+  }
+
+  /**
+   * Updates the UI of the game for the next level.
    */
   nextLevel() {
     $("#maze-area").empty();

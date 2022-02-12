@@ -11,8 +11,6 @@ class Component {
     this._id = id;
   }
 
-  /**
-   * @returns {string} the component id
-   */
+  /** @returns {string} the component id */
   get id() { return this._id; }
 }

@@ -14,10 +14,6 @@ class Dot extends Tile {
     this._isEnergizer = isEnergizer;
   }
 
-  /**
-   * @returns {boolean} the energizer state of the dot.
-   */
-  get isEnergizer() {
-    return this._isEnergizer;
-  }
+  /** @returns {boolean} the energizer state of the dot. */
+  get isEnergizer() { return this._isEnergizer; }
 }

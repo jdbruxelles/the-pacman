@@ -17,7 +17,8 @@ class GameCtrl {
    */
   run() {
     this.view.updateLives();
-    this.view.displayGameOver();
+    this.view.showHighScore();
+    this.game.markStart();
     this.play();
   }
 
@@ -42,12 +43,17 @@ class GameCtrl {
       if (this.game.lvlSucceed()) {
         this.game.nextLevel();
         this.view.nextLevel();
+        this.view.enablePacman();
+        this.view.displayEndOfGameMsg("C'EST GAGNÉ !<br/>Niveau Suivant");
+        setTimeout(() => {
+          this.view.hideEndOfGameMsg();
+        }, 3000);
       }
       if (this.game.isGameOver()) {
-        console.log("GAME OVER !");
+        this.view.displayEndOfGameMsg("GAME OVER !");
         clearInterval(this._timer);
         this.game.saveScore();
-        this.view.displayGameOver();
+        this.view.showHighScore();
         this.view.disablePacman();
       }
       this.view.updateFrame();
