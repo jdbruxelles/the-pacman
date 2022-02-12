@@ -12,12 +12,22 @@
 - [ ] L'apparition des fruits.
 - [ ] Plus de niveaux de jeu (plusieurs [labyrinthes](src/js/maze.js)).
 
+## Outils utilisés
+
+- [jQuery](https://jquery.com/)
+- [JdB.CSS](https://css.bruxelles.dev/)
+- [Font Awesome](https://fontawesome.com/)
+- [Google Fonts](https://fonts.google.com/)
+
 ## Contribution
 
 Vous pouvez contribuer à l'implémentation des fonctionnalités [bonus](#bonus)
 en faisant un clone du projet sur votre machine, vous faites votre ajout et
 vous terminez en faisant un pull request. Merci de suivre le style du code
 existant (indentation, espaces, nommage des variables et fonctions, etc.).
+
+Votre pull request doit contenir une description de la fonctionnalité ou du
+patch.
 
 ## Licence
 
