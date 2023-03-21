@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3437311d-9ccd-4964-8b58-43abb09aa3a8/deploy-status)](https://app.netlify.com/sites/the-pacman/deploys)
+
 # Pacman
 
 [Démo](https://pacman.jd.bruxelles.dev)
