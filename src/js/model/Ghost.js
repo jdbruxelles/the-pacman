@@ -41,10 +41,10 @@ class Ghost extends Sprite {
    * @returns {boolean} true if the ghost can ean the pacman.
    */
   canEat(pacman) {
-    let ghostPos = JSON.stringify(this.position);
-    let pacmanPos = JSON.stringify(pacman.position);
-    let ghostPreviousPos = JSON.stringify(this.previousPosition);
-    let pacmanPreviousPos = JSON.stringify(pacman.previousPosition);
+    const ghostPos = JSON.stringify(this.position);
+    const pacmanPos = JSON.stringify(pacman.position);
+    const ghostPreviousPos = JSON.stringify(this.previousPosition);
+    const pacmanPreviousPos = JSON.stringify(pacman.previousPosition);
 
     return ghostPos === pacmanPos ||
       (ghostPreviousPos === pacmanPos && ghostPos === pacmanPreviousPos);

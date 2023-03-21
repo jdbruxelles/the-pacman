@@ -28,9 +28,7 @@ class GameView {
       }).one("click", (event) => {
         this.startGame();
         $(event.target).click(() => {
-          if (!this._game.isGameOver()) {
-            this._togglePause();
-          }
+          if (!this._game.isGameOver()) this._togglePause();
         }).html(
           $("<span>",{
             "aria-hidden": true,
@@ -44,16 +42,8 @@ class GameView {
 
     $(window).on("keydown", (event) => {
       switch (event.key.toLowerCase()) {
-        case "p":
-          if (this._game.hasStarted) {
-            this._togglePause();
-          }
-          break;
-        case "s":
-          if (!this._game.hasStarted) {
-            $("#start").click();
-          }
-          break;
+        case "p": if (this._game.hasStarted) this._togglePause(); break;
+        case "s": if (!this._game.hasStarted) $("#start").click(); break;
         case "r": window.location.reload(); break;
       }
     });
@@ -63,7 +53,9 @@ class GameView {
    * Toggle pause state and the pause button.
    */
   _togglePause() {
-    let $startButton = $("#pacman-container").find("#start");
+    if (this._game.isGameOver()) return;
+
+    const $startButton = $("#pacman-container").find("#start");
     if (this._game.isPaused) {
       this._game.markPlay();
       this._gameCtrl.play();
@@ -111,7 +103,7 @@ class GameView {
       id: properties.id
     }).css({ top, left } = properties);
 
-    let $mazeArea = $("#maze-area");
+    const $mazeArea = $("#maze-area");
     let i, j, left, top, id = 1;
 
     for (i = 0; i < this._nbRows; i++) {
@@ -205,7 +197,7 @@ class GameView {
    * Updates the number of views in the UI.
    */
   updateLives() {
-    let $liveArea = $("#lives-area");
+    const $liveArea = $("#lives-area");
     $liveArea.empty();
     for (let i = 0; i < this._game.pacman.nbLives; i++) {
       $liveArea.append($("<span>"));

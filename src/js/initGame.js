@@ -1,3 +1,3 @@
 $(function(){
-  let gameCtrl = new GameCtrl();
+  const gameCtrl = new GameCtrl();
 });

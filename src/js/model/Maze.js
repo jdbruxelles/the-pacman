@@ -99,7 +99,7 @@ class Maze {
    */
   pick(pos) {
     if (this._layer_dot.hasTile(pos)) {
-      let tile = this._layer_dot.getTile(pos);
+      const tile = this._layer_dot.getTile(pos);
       this._layer_dot.setTile(pos, undefined);
       this._nbDots--;
       return tile;
